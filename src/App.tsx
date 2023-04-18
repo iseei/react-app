@@ -26,6 +26,11 @@ const router = createBrowserRouter([
   },
 ]);
 
+console.log('[[app env]]:', {
+  NODE_ENV: process.env.NODE_ENV,
+  isDevelopment: process.env.isDevelopment,
+});
+
 const App = () => (
   <div className="App">
     <RouterProvider router={router} />

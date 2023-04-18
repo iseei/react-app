@@ -21,7 +21,7 @@
   },
   "scripts": {
     "dev": "TS_NODE_PROJECT=\"tsconfig.webpack.config.json\" webpack serve",
-    "dev:build": "TS_NODE_PROJECT=\"tsconfig.webpack.config.json\" webpack build",
+    "dev:build": "TS_NODE_PROJECT=\"tsconfig.webpack.config.json\" NODE_ENV=production webpack build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

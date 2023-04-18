@@ -4,6 +4,7 @@ import HtmlPlugin from 'html-webpack-plugin';
 import InterpolateHtmlPlugin from 'interpolate-html-plugin';
 import SpeedMeasurePlugin from 'speed-measure-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import path from 'path';
 // const HtmlPlugin = require('html-webpack-plugin');
 // import cssLoader from 'css-loader';
 // import { IncomingMessage } from 'http';
@@ -63,8 +64,16 @@ const config: Webpack.Configuration & Server.Configuration = {
       }
     ]
   },
+  cache: {
+    type: 'filesystem',
+    cacheDirectory: path.resolve(__dirname, '.cache'),
+    version: '1.0.0'
+  },
   plugins: [
     new CleanWebpackPlugin(),
+    new Webpack.DefinePlugin({
+      'process.env.isDevelopment': isDevelopment,
+    }),
     new InterpolateHtmlPlugin({
       PUBLIC_URL: '',
     }),

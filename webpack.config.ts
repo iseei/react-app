@@ -2,15 +2,18 @@ import Webpack from 'webpack';
 import Server from 'webpack-dev-server';
 import HtmlPlugin from 'html-webpack-plugin';
 import InterpolateHtmlPlugin from 'interpolate-html-plugin';
+import SpeedMeasurePlugin from 'speed-measure-webpack-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 // const HtmlPlugin = require('html-webpack-plugin');
 // import cssLoader from 'css-loader';
 // import { IncomingMessage } from 'http';
 
-const isDevelopment = true;
+const smp = new SpeedMeasurePlugin();
+const isDevelopment = process.env.NODE_ENV !== 'production';
 
 const config: Webpack.Configuration & Server.Configuration = {
-  mode: 'development',
-  devtool: 'source-map',
+  mode: isDevelopment ? 'development' : 'production',
+  devtool: isDevelopment ? 'eval-source-map' : 'source-map',
   entry: './src/index.tsx',
   module: {
     rules: [
@@ -61,6 +64,7 @@ const config: Webpack.Configuration & Server.Configuration = {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new InterpolateHtmlPlugin({
       PUBLIC_URL: '',
     }),
@@ -78,4 +82,4 @@ const config: Webpack.Configuration & Server.Configuration = {
   }
 }
 
-export default config;
+export default smp.wrap(config);

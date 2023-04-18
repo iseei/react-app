@@ -20,6 +20,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "dev": "TS_NODE_PROJECT=\"tsconfig.webpack.config.json\" webpack serve",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -42,5 +43,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "interpolate-html-plugin": "^4.0.0",
+    "ts-loader": "^9.4.2",
+    "url-loader": "^4.1.1",
+    "webpack-cli": "^5.0.1"
   }
 }
